@@ -1,12 +1,13 @@
 <resources>
-    <string name="app_name">Traccar Manager</string>
-    <string name="label_server">Server</string>
-    <string name="label_info">This screen will be shown only once. After you click the button, server address will be saved in preferences. To change it, clear app data from application manager.</string>
-    <string name="button_start">Start</string>
-    <string name="error_connection">Server connection failed</string>
-    <string name="file_browser">File Browser</string>
-    <string name="notification_channel">Default</string>
-    <string name="permission_location_rationale">App requires location permission to show current location on the map</string>
-    <string name="biometric_title">Biometric login</string>
-    <string name="biometric_cancel">Use account password</string>
+    <string name="app_name">Gonzher</string>
+    <string name="default_url">https://api.gonzher.com</string>
+    <string name="label_server">Servidor</string>
+    <string name="label_info">Esta pantalla se mostrará solo una vez. Después de hacer clic en el botón, la dirección del servidor se guardará en las preferencias. Para cambiarla, borra los datos de la aplicación desde el administrador de aplicaciones.</string>
+    <string name="button_start">Iniciar</string>
+    <string name="error_connection">Fallo en la conexión con el servidor</string>
+    <string name="file_browser">Explorador de archivos</string>
+    <string name="notification_channel">Predeterminado</string>
+    <string name="permission_location_rationale">La aplicación requiere permiso de ubicación para mostrar la ubicación actual en el mapa</string>
+    <string name="biometric_title">Inicio de sesión biométrico</string>
+    <string name="biometric_cancel">Usar contraseña de cuenta</string>
 </resources>

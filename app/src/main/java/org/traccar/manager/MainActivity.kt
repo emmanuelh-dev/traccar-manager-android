@@ -17,6 +17,7 @@
 package org.traccar.manager
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.webkit.WebViewFragment
@@ -37,8 +38,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         updateEventId(intent)
+        setDefaultUrlIfNotSet()
         if (savedInstanceState == null) {
             initContent()
+        }
+    }
+
+    private fun setDefaultUrlIfNotSet() {
+        val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        if (!preferences.contains(PREFERENCE_URL)) {
+            preferences.edit().putString(PREFERENCE_URL, getString(R.string.default_url)).apply()
         }
     }
 
