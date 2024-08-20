@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 @file:Suppress("DEPRECATION")
-package org.traccar.manager
+package org.gonzher.manager
 
 import android.content.Intent
 import android.content.SharedPreferences

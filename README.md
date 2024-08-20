@@ -1,14 +1,8 @@
-# [Traccar Manager for Android](https://www.traccar.org/manager)
-
-[![Get it on Google Play](http://www.tananaev.com/badges/google-play.svg)](https://play.google.com/store/apps/details?id=org.traccar.manager)
+# [Gonzher Manager for Android](https://www.gps.gonzher.com)
 
 ## Overview
 
-Traccar Manager is a mobile application to manage GPS tracking devices. It requires a Traccar server instance to work.
-
-## Team
-
-- Anton Tananaev ([anton@traccar.org](mailto:anton@traccar.org))
+Gonzher Manager is a mobile application to manage GPS tracking devices. It requires a Gonzher account to work.
 
 ## License
 

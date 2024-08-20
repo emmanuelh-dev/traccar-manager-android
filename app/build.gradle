@@ -8,14 +8,14 @@ plugins {
 android {
     compileSdk 34
     defaultConfig {
-        applicationId 'org.traccar.manager'
+        applicationId 'org.gonzher.manager'
         minSdkVersion 21
         targetSdkVersion 34
         versionCode 38
         versionName '4.2'
         multiDexEnabled true
     }
-    namespace 'org.traccar.manager'
+    namespace 'org.gonzher.manager'
 
     buildFeatures {
         flavorDimensions = ['default']
