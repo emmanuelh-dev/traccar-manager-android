@@ -2,7 +2,13 @@
 
 ## Overview
 
-Gonzher Manager is a mobile application to manage GPS tracking devices. It requires a Gonzher account to work.
+Gonzher Manager is a mobile application for managing GPS tracking devices, based on the original Traccar mobile app. Simply replace this code:
+```
+<string name="default_url">https://api.gonzher.com</string>
+```
+with your URL, and it will automatically update for your users.
+
+You can also change the images, logos, and package name to customize the app as your own.
 
 ## License
 
