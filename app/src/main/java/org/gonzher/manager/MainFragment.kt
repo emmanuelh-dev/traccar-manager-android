@@ -43,25 +43,32 @@ class MainFragment : WebViewFragment() {
     inner class AppInterface {
         @JavascriptInterface
         fun postMessage(message: String) {
-            if (message.startsWith("login")) {
-                if (message.length > 6) {
-                    SecurityManager.saveToken(activity, message.substring(6))
+            when {
+                message.startsWith("login") -> {
+                    if (message.length > 6) {
+                        SecurityManager.saveToken(activity, message.substring(6))
+                    }
+                    broadcastManager.sendBroadcast(Intent(EVENT_LOGIN))
                 }
-                broadcastManager.sendBroadcast(Intent(EVENT_LOGIN))
-            } else if (message.startsWith("authentication")) {
-                SecurityManager.readToken(activity) { token ->
-                    if (token != null) {
-                        val code = "handleLoginToken && handleLoginToken('$token')"
-                        webView.evaluateJavascript(code, null)
+                message.startsWith("authentication") -> {
+                    SecurityManager.readToken(activity) { token ->
+                        if (token != null) {
+                            val code = "handleLoginToken && handleLoginToken('$token')"
+                            webView.evaluateJavascript(code, null)
+                        }
                     }
                 }
-            } else if (message.startsWith("logout")) {
-                SecurityManager.deleteToken(activity)
-            } else if (message.startsWith("server")) {
-                val url = message.substring(7)
-                PreferenceManager.getDefaultSharedPreferences(activity)
-                    .edit().putString(MainActivity.PREFERENCE_URL, url).apply()
-                activity.runOnUiThread { loadPage() }
+                message.startsWith("logout") -> {
+                    SecurityManager.deleteToken(activity)
+                }
+                message.startsWith("server") -> {
+                    val newUrl = message.substring(7)
+                    PreferenceManager.getDefaultSharedPreferences(activity)
+                        .edit()
+                        .putString(PREFERENCE_SERVER_URL, newUrl)
+                        .apply()
+                    activity.runOnUiThread { loadPage() }
+                }
             }
         }
     }
@@ -93,20 +100,16 @@ class MainFragment : WebViewFragment() {
 
     private fun loadPage() {
         val url = PreferenceManager.getDefaultSharedPreferences(activity)
-            .getString(MainActivity.PREFERENCE_URL, null)
-        if (url != null) {
-            val mainActivity = activity as? MainActivity
-            val eventId = mainActivity?.pendingEventId
-            mainActivity?.pendingEventId = null
-            if (eventId != null) {
-                webView.loadUrl("$url?eventId=$eventId")
-            } else {
-                webView.loadUrl(url)
-            }
+            .getString(PREFERENCE_SERVER_URL, getString(R.string.default_url))
+
+        val mainActivity = activity as? MainActivity
+        val eventId = mainActivity?.pendingEventId
+        mainActivity?.pendingEventId = null
+
+        if (eventId != null) {
+            webView.loadUrl("$url?eventId=$eventId")
         } else {
-            activity.fragmentManager
-                .beginTransaction().replace(android.R.id.content, StartFragment())
-                .commitAllowingStateLoss()
+            webView.loadUrl(url!!)
         }
     }
 
@@ -280,6 +283,7 @@ class MainFragment : WebViewFragment() {
     }
 
     companion object {
+        private const val PREFERENCE_SERVER_URL = "server_url"
         const val EVENT_LOGIN = "eventLogin"
         const val EVENT_TOKEN = "eventToken"
         const val EVENT_EVENT = "eventEvent"
